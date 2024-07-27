@@ -1,3 +1,4 @@
+import { CoursesService } from './../services/courses.service';
 import { Component } from '@angular/core';
 import { Course } from '../model/course'
 
@@ -7,10 +8,16 @@ import { Course } from '../model/course'
   styleUrl: './courses.component.scss'
 })
 export class CoursesComponent {
-
-  courses: Course[] = [
-    {_id: "1", name:"Angular", category: "front-end"}
-  ];
+  //validações basicas e o que deve aparecer na tela
+  courses: Course[] = [];
   displayedColumns = ["name", "category"];
+
+  constructor(private coursesService : CoursesService){
+
+  }
+
+  ngOnInit(): void {
+    this.courses = this.coursesService.list();
+  }
 
 }
